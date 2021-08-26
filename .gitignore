@@ -7,6 +7,10 @@ cscope.*
 __pycache__/
 cmake/Cooking.cmake
 
+core*
+
+*.swp
+
 # Prerequisites
 *.d
 
@@ -40,4 +44,3 @@ cmake/Cooking.cmake
 *.out
 *.app
 
-*.swp

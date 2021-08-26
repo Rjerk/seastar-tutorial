@@ -1,9 +1,9 @@
 # Seastar Build
 
 + platform: CentOS7
-+ Boost 1.72.0 is already installed. (BOOST_LI
++ Boost 1.72.0 is already installed.
 
-Install the deps:
+Install the dependencies:
 
 ```
 ./install-dependencies.sh

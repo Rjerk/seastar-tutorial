@@ -1,35 +1,34 @@
 #include <seastar/core/app-template.hh>
+#include <seastar/core/coroutine.hh>
 #include <seastar/core/do_with.hh>
+#include <seastar/core/file.hh>
 #include <seastar/core/future.hh>
+#include <seastar/core/seastar.hh>
 #include <seastar/core/sleep.hh>
-#include <seastar/core/thread.hh>
 #include <seastar/util/log.hh>
 #include <seastar/util/tmp_file.hh>
 
-using namespace std::chrono_literals;
-
 namespace ss = seastar;
 
-ss::future<> slow_incr(int i)
+using namespace std::chrono_literals;
+
+ss::future<> parallel_print()
 {
-    return ss::async([i]() {
-               ss::sleep(10ms).get();
-               return i + 1;
-           })
-        .then([](int i) {
-            std::cout << i << std::endl;
-            return ss::make_ready_future();
-        });
+    auto f = seastar::max_concurrent_for_each(std::vector<int>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 5, [](int i) -> seastar::future<> {
+        co_await seastar::sleep(1s);
+        std::cout << i << "\n";
+    });
+    co_await std::move(f);
 }
 
 ss::future<> f()
 {
-    return slow_incr(1);
+    return parallel_print();
 }
 
 int main(int argc, char** argv)
 {
-    seastar::app_template app;
+    ss::app_template app;
     try {
         app.run(argc, argv, f);
     } catch (...) {

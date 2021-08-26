@@ -1,6 +1,6 @@
 # seastar tuturial
 
-Seastar and GCC 10 should be ready, see [compiler and install the seastar](./seastar-install.md)
+Seastar and GCC 10 should be ready, see [compiler and install the seastar](./seastar-build.md)
 
 Build and run:
 

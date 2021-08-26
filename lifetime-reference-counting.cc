@@ -11,6 +11,7 @@ using namespace std::chrono_literals;
 
 namespace ss = seastar;
 
+// A file object can be copied, but copying does not involve copying the file descriptor
 ss::future<uint64_t> slow_size(ss::file f)
 {
     return ss::sleep(100ms).then([f] {

@@ -27,7 +27,7 @@ endfunction()
 
 seastar_example(get-started)
 
-seastar_example(threads-smp-count)
+seastar_example(smp-count)
 
 seastar_example(future-continuation)
 seastar_example(future-parallelism)
@@ -49,3 +49,36 @@ seastar_example(exception-futurize-invoke)
 seastar_example(lifetime-do-with)
 seastar_example(lifetime-reference-counting)
 seastar_example(lifetime-save-on-stack)
+
+seastar_example(loop-repeat)
+seastar_example(loop-do-until)
+seastar_example(loop-do-for-each)
+seastar_example(loop-parallel-for-each)
+seastar_example(loop-max-concurrent-for-each)
+seastar_example(loop-when-all)
+seastar_example(loop-when-all-succeed)
+
+seastar_example(semaphore-limit-parallelism)
+seastar_example(semaphore-with-semaphore)
+seastar_example(semaphore-get-units)
+seastar_example(semaphore-limit-parallelism-of-loop)
+
+seastar_example(gate)
+
+seastar_example(network-listen)
+seastar_example(network-write)
+seastar_example(network-handle-connection)
+
+seastar_example(sharded-service)
+
+seastar_example(command-line)
+
+seastar_example(debugging)
+seastar_example(debugging-trace)
+
+seastar_example(thread)
+seastar_example(thread-async)
+seastar_example(thread-async-block)
+
+seastar_example(isolation-loop)
+seastar_example(isolation-scheduling-groups)
