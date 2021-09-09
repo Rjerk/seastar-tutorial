@@ -6,6 +6,15 @@
 #include <iostream>
 #include <stdexcept>
 
+#ifndef SEASTAR_COROUTINES_ENABLED
+
+int main(int argc, char** argv) {
+    std::cout << "coroutines not available\n";
+    return 0;
+}
+
+#else
+
 void foo()
 {
     throw "foo"; // throw an exception instead of returning a failed future
@@ -60,3 +69,5 @@ int main(int argc, char** argv)
     }
     return 0;
 }
+
+#endif

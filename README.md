@@ -1,15 +1,22 @@
 # seastar tuturial
 
-Seastar and GCC 10 should be ready, see [compiler and install the seastar](./seastar-build.md)
+Code example in [seastar tutorial](https://github.com/scylladb/seastar/blob/master/doc/tutorial.md).
+
+## Build
+
+Seastar and C++20 compiler should be ready, see [build Seastar](./seastar-build.md)
 
 Build and run:
 
 ```bash
 mkdir build && cd build
 
-seastar_dir=/log/indexer/seastar
+export CC=/usr/local/bin/gcc
+export CXX=/usr/local/bin/g++
 
-cmake3 -G Ninja -DCMAKE_PREFIX_PATH="$seastar_dir/build/release;$seastar_dir/build/release/_cooking/installed" -DCMAKE_MODULE_PATH=$seastar_dir/cmake ..
+seastar_dir=/log/seastar
+
+cmake3 -G Ninja -DCMAKE_PREFIX_PATH="$seastar_dir/build/release/_cooking/installed" -DCMAKE_MODULE_PATH=$seastar_dir/cmake ..
 
 ninja
 

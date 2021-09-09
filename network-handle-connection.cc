@@ -52,7 +52,7 @@ ss::future<> service_loop()
                 // handle_connection(), so we do not wait for one
                 // connection to be handled before accepting the next one.
                 (void)handle_connection(std::move(res.connection), std::move(res.remote_address)).handle_exception([](std::exception_ptr ep) {
-                    fmt::print(stderr, "Could not handle connection: {}\n", ep);
+                    // seastar::print(stderr, "Could not handle connection: {}\n", ep);
                 });
             });
         });

@@ -4,6 +4,15 @@
 #include <seastar/coroutine/all.hh>
 #include <seastar/util/log.hh>
 
+#ifndef SEASTAR_COROUTINES_ENABLED
+
+int main(int argc, char** argv) {
+    std::cout << "coroutines not available\n";
+    return 0;
+}
+
+#else
+
 seastar::future<int> read(int key)
 {
     return seastar::make_ready_future<int>(key);
@@ -42,3 +51,5 @@ int main(int argc, char** argv)
     }
     return 0;
 }
+
+#endif

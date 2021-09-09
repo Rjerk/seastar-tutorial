@@ -8,6 +8,15 @@
 
 namespace ss = seastar;
 
+#ifndef SEASTAR_COROUTINES_ENABLED
+
+int main(int argc, char** argv) {
+    std::cout << "coroutines not available\n";
+    return 0;
+}
+
+#else
+
 using namespace std::chrono_literals;
 
 ss::future<> slow()
@@ -33,7 +42,8 @@ seastar::future<> g()
 seastar::future<> buggy_usage()
 {
     static thread_local seastar::semaphore limit(3);
-    static thread_local auto               bad_slow = []() -> ss::future<> {
+
+    static thread_local auto bad_slow = []() -> ss::future<> {
         throw 1;
     };
 
@@ -70,3 +80,5 @@ int main(int argc, char** argv)
     }
     return 0;
 }
+
+#endif

@@ -5,6 +5,15 @@
 
 #include <stdexcept>
 
+#ifndef SEASTAR_COROUTINES_ENABLED
+
+int main(int argc, char** argv) {
+    std::cout << "coroutines not available\n";
+    return 0;
+}
+
+#else
+
 using namespace std::chrono_literals;
 
 seastar::future<> function_returning_an_exceptional_future()
@@ -35,3 +44,5 @@ int main(int argc, char** argv)
     }
     return 0;
 }
+
+#endif

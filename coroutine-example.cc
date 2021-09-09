@@ -5,9 +5,14 @@
 
 #include <stdexcept>
 
-#ifndef __cpp_impl_coroutine
-#error Coroutines support disabled.
-#endif
+#ifndef SEASTAR_COROUTINES_ENABLED
+
+int main(int argc, char** argv) {
+    std::cout << "coroutines not available\n";
+    return 0;
+}
+
+#else
 
 using namespace std::chrono_literals;
 
@@ -48,3 +53,5 @@ int main(int argc, char** argv)
     }
     return 0;
 }
+
+#endif

@@ -10,6 +10,15 @@
 
 namespace ss = seastar;
 
+#ifndef SEASTAR_COROUTINES_ENABLED
+
+int main(int argc, char** argv) {
+    std::cout << "coroutines not available\n";
+    return 0;
+}
+
+#else
+
 using namespace std::chrono_literals;
 
 ss::future<> parallel_print()
@@ -37,3 +46,5 @@ int main(int argc, char** argv)
     }
     return 0;
 }
+
+#endif
