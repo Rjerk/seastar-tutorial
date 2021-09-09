@@ -52,7 +52,7 @@ seastar::future<int> exception_propagating()
 
 seastar::future<> f()
 {
-    exception_propagating();
+    (void) exception_propagating();
 
     std::cout << "never here\n";
     return seastar::make_ready_future();

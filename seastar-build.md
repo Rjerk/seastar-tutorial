@@ -10,16 +10,7 @@ Install Boost with:
 ./b2 install
 ```
 
-Install the dependencies of Seastar:
-
-```
-./install-dependencies.sh
-
-# cmake --version
-cmake3 version 3.17.5
-```
-
-C++20 support is needed, I choose the GCC 10:
+C++20 support is needed, I use GCC 10:
 
 ```bash
 yum install devtoolset-10
@@ -30,6 +21,9 @@ Get seastar and build:
 
 ```
 git submodule update --init --force --recursive
+
+# install the dependencies of Seastar
+./install-dependencies.sh
 
 # enable coroutines with --cflags="-fcoroutines"
 ./configure.py --mode=release --prefix=/usr/local --c++-dialect=gnu++20 --without-apps --without-demos --cflags="-fcoroutines"

@@ -9,10 +9,10 @@ seastar::future<> f()
 {
     std::cout << "Sleeping... " << std::flush;
     using namespace std::chrono_literals;
-    seastar::sleep(200ms).then([] {
+    (void) seastar::sleep(200ms).then([] {
         std::cout << "200ms " << std::flush;
     });
-    seastar::sleep(100ms).then([] {
+    (void) seastar::sleep(100ms).then([] {
         std::cout << "100ms " << std::flush;
     });
     return seastar::sleep(1s).then([] {
