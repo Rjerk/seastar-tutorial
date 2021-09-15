@@ -10,7 +10,8 @@ namespace ss = seastar;
 
 #ifndef SEASTAR_COROUTINES_ENABLED
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv)
+{
     std::cout << "coroutines not available\n";
     return 0;
 }

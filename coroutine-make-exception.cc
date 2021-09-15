@@ -8,7 +8,8 @@
 
 #ifndef SEASTAR_COROUTINES_ENABLED
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv)
+{
     std::cout << "coroutines not available\n";
     return 0;
 }
@@ -52,7 +53,7 @@ seastar::future<int> exception_propagating()
 
 seastar::future<> f()
 {
-    (void) exception_propagating();
+    (void)exception_propagating();
 
     std::cout << "never here\n";
     return seastar::make_ready_future();

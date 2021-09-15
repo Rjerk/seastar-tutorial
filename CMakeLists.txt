@@ -82,3 +82,8 @@ seastar_example(thread-async-block)
 
 seastar_example(isolation-loop)
 seastar_example(isolation-scheduling-groups)
+
+seastar_example(deferred-action)
+
+seastar_example(http-server-control)
+seastar_example(api-registry-builder)
