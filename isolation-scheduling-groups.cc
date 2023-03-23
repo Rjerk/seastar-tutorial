@@ -47,14 +47,16 @@ seastar::future<long> loop_in_sg(int parallelism, bool& stop, seastar::schedulin
 
 seastar::future<> f()
 {
-    return seastar::when_all_succeed(seastar::create_scheduling_group("loop1", 100), seastar::create_scheduling_group("loop2", 100))
+    return seastar::when_all_succeed(seastar::create_scheduling_group("loop1", 200), seastar::create_scheduling_group("loop2", 100))
         .then_unpack([](seastar::scheduling_group sg1, seastar::scheduling_group sg2) {
             return seastar::do_with(false, [sg1, sg2](bool& stop) {
-                (void)seastar::sleep(std::chrono::seconds(10)).then([&stop] {
+                (void)seastar::sleep(std::chrono::seconds(3)).then([&stop] {
+                    std::cout << "Stopping...\n";
                     stop = true;
                 });
+
                 return seastar::when_all_succeed(loop_in_sg(1, stop, sg1), loop_in_sg(3, stop, sg2)).then_unpack([](long n1, long n2) {
-                    std::cout << "Counters: " << n1 << ", " << n2 << "\n";
+                    std::cout << "Counters: loop1 -> " << n1 << ", loop2 -> " << n2 << "\n";
                 });
             });
         });
